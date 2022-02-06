@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import calculaIMC from '../../utils/Utils';
+import sacaClasificacion from '../../utils/Utils2';
 
 export class CalculadoraIMC extends Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export class CalculadoraIMC extends Component {
       peso: '',
       altura: '',
       imc: 0,
+      clasificacion: '',
     };
   }
 
@@ -22,9 +24,17 @@ export class CalculadoraIMC extends Component {
   };
 
   actualizaImc = () => {
-    let imcCalculado = calculaIMC(this.peso, this.altura);
+    let imcCalculado = calculaIMC(this.state.peso, this.state.altura);
     this.setState({imc: imcCalculado});
+    let clasificacionCalculada = sacaClasificacion(imcCalculado);
+    this.setState({clasificacion: clasificacionCalculada});
+    //this.actualizaClasificacion();
   };
+
+  /*actualizaClasificacion = () => {
+    let clasificacionCalculada = sacaClasificacion(this.state.imc);
+    this.setState({clasificacion: clasificacionCalculada});
+  };*/
 
   /*calculaIMC = () => {
     let unPesoEnter = parseInt(this.peso);
@@ -65,13 +75,11 @@ export class CalculadoraIMC extends Component {
         />
         <Button
           mode='outlined'
-          disabled='false'
-          value='Calcular IMC'
           onPress={this.actualizaImc}
-        >Calcula IMC</Button>
+        >Calcular IMC</Button>
         <Text>Resultado</Text>
-        <Text>{this.altura}</Text>
-        <Text>{this.peso}</Text>
+        <Text>{this.state.imc}</Text>
+        <Text>{this.state.clasificacion}</Text>
       </View>
     );
   }
