@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <View style={styles.inicial}>
         <Text style={styles.inicialText}>Calculadora IMC</Text>
-        <CalculadoraIMC></CalculadoraIMC>
+        <CalculadoraIMC style={styles.calcu}></CalculadoraIMC>
         <Text style={styles.finalText}>Created for Daniel Escoms Donate 2do DAM</Text>
       </View>
     );
@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     height: screenHeight,
     paddingLeft: 10,
     paddingRight: 10,
+    alignContent: 'flex-start',
   },
   inicialText: {
     fontSize: 30,
@@ -35,8 +36,10 @@ const styles = StyleSheet.create({
   },
   finalText: {
     color: 'grey',
-    flex: 0.5,
     paddingTop: 10,
+  },
+  calcu: {
+    justifyContent: 'space-around',
   },
 });
 
